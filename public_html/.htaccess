@@ -1,0 +1,25 @@
+DirectoryIndex index.php
+
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    RewriteBase /
+
+    # Скрытые файлы и каталоги (.git, .env, .htaccess и т. п.) — 403.
+    # Исключение: .well-known — он нужен для выпуска SSL-сертификата.
+    RewriteRule (^|/)\.(?!well-known(/|$)) - [F]
+
+    # Служебные, резервные и конфигурационные файлы наружу не отдаём.
+    RewriteRule \.(log|sql|gz|zip|tar|ini|bak|backup|old|orig|save|swp|swo|sh|conf|dist|md|markdown|yml|yaml|json|lock|env)$ - [F,NC]
+
+    RewriteCond %{REQUEST_FILENAME} -f [OR]
+    RewriteCond %{REQUEST_FILENAME} -d
+    RewriteRule ^ - [L]
+
+    RewriteRule ^ index.php [QSA,L]
+</IfModule>
+
+Options -Indexes
+
+<IfModule mod_headers.c>
+    Header always unset X-Powered-By
+</IfModule>

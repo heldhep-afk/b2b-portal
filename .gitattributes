@@ -1,0 +1,11 @@
+# Единые переводы строк: в репозитории и в рабочей копии — LF,
+# чтобы файлы совпадали с версией на Linux-хостинге.
+* text=auto eol=lf
+
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary

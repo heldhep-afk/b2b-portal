@@ -1,0 +1,44 @@
+# Локальная конфигурация с реальными доступами к базе — не публикуется.
+config/db.php
+
+# Счётчики лимитов (RateLimiter) создаются во время работы.
+storage/ratelimit/*
+!storage/ratelimit/.htaccess
+storage/logs/
+storage/cache/
+
+# Логи и дампы
+*.log
+*.sql.gz
+*.sql.zip
+*.dump
+
+# Архивы и резервные копии
+*.zip
+*.tar
+*.tar.gz
+*.7z
+*.rar
+*.bak
+*.backup
+*.old
+*.orig
+*.save
+*~
+
+# Редакторы и ОС
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Переменные окружения
+.env
+.env.*
+!.env.example
+
+# Временные файлы загрузки PHP
+*.part
