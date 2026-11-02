@@ -242,13 +242,26 @@ $hasFilters = (bool)$baseQuery;
                                     <?php elseif ($isAuth && !canCompany('create_deals')): ?>
                                         <button type="button" class="btn btn-outline-secondary w-100" disabled>Нет права на закупки</button>
                                     <?php elseif ($isAuth): ?>
-                                        <a href="/checkout?product_id=<?= (int)$p['id'] ?>" class="btn btn-brand w-100">
-                                            <i class="bi bi-cart-plus me-1"></i>Купить
-                                        </a>
+                                        <form method="POST" action="/cart/add" class="d-grid gap-2">
+                                            <?= csrfField() ?>
+                                            <input type="hidden" name="product_id" value="<?= (int)$p['id'] ?>">
+                                            <input type="hidden" name="quantity" value="<?= max(1, (int)$p['min_order']) ?>">
+                                            <button type="submit" name="then" value="cart" class="btn btn-brand w-100">
+                                                <i class="bi bi-cart-plus me-1"></i>В заявку
+                                            </button>
+                                            <button type="submit" name="then" value="checkout" class="btn btn-outline-brand w-100">
+                                                Купить сразу
+                                            </button>
+                                        </form>
                                     <?php else: ?>
-                                        <a href="/checkout?product_id=<?= (int)$p['id'] ?>" class="btn btn-outline-brand w-100">
-                                            Войти и купить
-                                        </a>
+                                        <form method="POST" action="/cart/add" class="d-grid">
+                                            <?= csrfField() ?>
+                                            <input type="hidden" name="product_id" value="<?= (int)$p['id'] ?>">
+                                            <input type="hidden" name="quantity" value="<?= max(1, (int)$p['min_order']) ?>">
+                                            <button type="submit" name="then" value="cart" class="btn btn-outline-brand w-100">
+                                                <i class="bi bi-cart-plus me-1"></i>В заявку
+                                            </button>
+                                        </form>
                                     <?php endif; ?>
                                 </div>
                             </div>

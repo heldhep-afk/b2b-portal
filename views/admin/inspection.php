@@ -135,7 +135,14 @@ require BASE_PATH . '/views/partials/inspection_steps.php';
                 <h5 class="mb-3">Заказ</h5>
                 <dl class="row small mb-0">
                     <dt class="col-5 text-muted fw-normal">Товар / услуга</dt>
-                    <dd class="col-7"><?= e($insp['product_name']) ?> · <?= number_format((int)$insp['quantity'], 0, ',', ' ') ?> <?= e($insp['unit']) ?></dd>
+                    <dd class="col-7">
+                        <?= e(dealItemsTitle((string)$insp['product_name'], (int)($insp['items_count'] ?? 1))) ?>
+                        <?php if ((int)($insp['items_count'] ?? 1) > 1): ?>
+                            · <?= (int)$insp['items_count'] ?> поз.
+                        <?php else: ?>
+                            · <?= number_format((int)$insp['quantity'], 0, ',', ' ') ?> <?= e($insp['unit']) ?>
+                        <?php endif; ?>
+                    </dd>
                     <dt class="col-5 text-muted fw-normal">Сумма сделки</dt>
                     <dd class="col-7"><?= e(formatPrice($insp['total_amount'])) ?></dd>
                     <dt class="col-5 text-muted fw-normal">Покупатель</dt>

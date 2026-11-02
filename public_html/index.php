@@ -55,6 +55,8 @@ if (!headers_sent()) {
 require_once BASE_PATH . '/config/db.php';
 require_once BASE_PATH . '/app/Core/helpers.php';
 require_once BASE_PATH . '/app/Core/Security.php';
+require_once BASE_PATH . '/app/Core/Cart.php';
+require_once BASE_PATH . '/app/Core/Mailer.php';
 require_once BASE_PATH . '/app/Core/Router.php';
 
 // ---- Тайм-аут бездействия и периодическая смена идентификатора сессии ----
@@ -135,6 +137,12 @@ $router = new Router();
 
 $router->add('GET', '/', 'HomeController', 'index');
 $router->add('GET', '/catalog', 'HomeController', 'index');
+$router->add('GET', '/cart', 'CartController', 'index');
+$router->add('POST', '/cart/add', 'CartController', 'add');
+$router->add('POST', '/cart/update', 'CartController', 'update');
+$router->add('POST', '/cart/remove', 'CartController', 'remove');
+$router->add('POST', '/cart/clear', 'CartController', 'clear');
+$router->add('POST', '/cart/repeat', 'CartController', 'repeat');
 $router->add('GET', '/checkout', 'CheckoutController', 'show');
 $router->add('POST', '/checkout', 'CheckoutController', 'store');
 $router->add('GET', '/team', 'TeamController', 'index');
@@ -152,6 +160,10 @@ $router->add('GET', '/login', 'AuthController', 'login');
 $router->add('POST', '/login', 'AuthController', 'login');
 $router->add('GET', '/register', 'AuthController', 'register');
 $router->add('POST', '/register', 'AuthController', 'register');
+$router->add('GET', '/forgot', 'PasswordResetController', 'request');
+$router->add('POST', '/forgot', 'PasswordResetController', 'request');
+$router->add('GET', '/reset', 'PasswordResetController', 'reset');
+$router->add('POST', '/reset', 'PasswordResetController', 'reset');
 $router->add('GET', '/profile', 'ProfileController', 'index');
 $router->add('POST', '/profile/edit', 'ProfileController', 'edit');
 $router->add('GET', '/logout', 'ProfileController', 'logout');

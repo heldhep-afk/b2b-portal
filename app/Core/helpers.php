@@ -61,6 +61,22 @@ function formatPrice(mixed $price): string
     return number_format((float)$price, 2, ',', ' ') . ' ₽';
 }
 
+/** Состав сделки: «Товар» или «Товар и ещё 2 позиции». */
+function dealItemsTitle(string $firstName, int $count): string
+{
+    if ($count <= 1) {
+        return $firstName;
+    }
+
+    $rest = $count - 1;
+    $mod10 = $rest % 10;
+    $mod100 = $rest % 100;
+    $word = ($mod10 === 1 && $mod100 !== 11) ? 'позиция'
+        : (($mod10 >= 2 && $mod10 <= 4 && ($mod100 < 10 || $mod100 >= 20)) ? 'позиции' : 'позиций');
+
+    return $firstName . ' и ещё ' . $rest . ' ' . $word;
+}
+
 /** Метаданные статуса сделки: подпись, цвет бейджа Bootstrap и группа для фильтра. */
 function dealStatusMeta(string $status): array
 {

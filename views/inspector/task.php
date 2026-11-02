@@ -234,9 +234,13 @@ if ($task['mine'] || $task['status'] === 'requested') {
                 <div class="rounded bg-light border p-3 small mb-3">
                     <?= $task['buyer_note'] ? nl2br(e($task['buyer_note'])) : '<span class="text-muted">Особых пожеланий нет — проверьте соответствие товара или услуги заказу.</span>' ?>
                 </div>
-                <h6><?= e($task['product_name']) ?></h6>
+                <h6><?= e(dealItemsTitle((string)$task['product_name'], (int)($task['items_count'] ?? 1))) ?></h6>
                 <div class="small text-muted mb-2">
-                    <?= number_format((int)$task['quantity'], 0, ',', ' ') ?> <?= e($task['unit']) ?>
+                    <?php if ((int)($task['items_count'] ?? 1) > 1): ?>
+                        <?= (int)$task['items_count'] ?> поз.
+                    <?php else: ?>
+                        <?= number_format((int)$task['quantity'], 0, ',', ' ') ?> <?= e($task['unit']) ?>
+                    <?php endif; ?>
                     <?php if ($task['sku']): ?> · арт. <?= e($task['sku']) ?><?php endif; ?>
                     <?php if ($task['category_name']): ?> · <?= e($task['category_name']) ?><?php endif; ?>
                 </div>

@@ -57,6 +57,9 @@ $fe  = fn(string $k): string => '<div class="field-error" data-error-for="' . e(
                             <i class="bi bi-capslock me-1"></i>Включён Caps Lock
                         </div>
                         <?= $fe('password') ?>
+                        <div class="text-end mt-2">
+                            <a href="/forgot" class="small">Забыли пароль?</a>
+                        </div>
                     </div>
                     <button type="submit" class="btn btn-brand w-100 py-2" id="loginBtn">
                         <span class="spinner-border spinner-border-sm me-2" id="loginSpinner" role="status" hidden></span>

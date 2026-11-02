@@ -292,7 +292,7 @@ $firstName = $nameWords[1] ?? $nameWords[0];
                                 <?php endif; ?>
                             </td>
                             <td>
-                                <div><?= e($d['product_name']) ?></div>
+                                <div><?= e(dealItemsTitle((string)$d['product_name'], (int)($d['items_count'] ?? 1))) ?></div>
                                 <?php if ($d['category_name']): ?>
                                     <div class="small text-muted"><?= e($d['category_name']) ?></div>
                                 <?php endif; ?>
@@ -314,7 +314,13 @@ $firstName = $nameWords[1] ?? $nameWords[0];
                                     <?php endif; ?>
                                 <?php endif; ?>
                             </td>
-                            <td class="text-end text-nowrap"><?= number_format((int)$d['quantity'], 0, ',', ' ') ?> <?= e($d['unit']) ?></td>
+                            <td class="text-end text-nowrap">
+                                <?php if ((int)($d['items_count'] ?? 1) > 1): ?>
+                                    <span class="badge text-bg-light border"><?= (int)$d['items_count'] ?> поз.</span>
+                                <?php else: ?>
+                                    <?= number_format((int)$d['quantity'], 0, ',', ' ') ?> <?= e($d['unit']) ?>
+                                <?php endif; ?>
+                            </td>
                             <td class="text-end text-nowrap">
                                 <div class="fw-semibold"><?= e(formatPrice($d['total_amount'])) ?></div>
                                 <?php if ($d['payment_terms']): ?>
@@ -396,10 +402,14 @@ $firstName = $nameWords[1] ?? $nameWords[0];
                                     </button>
                                 <?php endif; ?>
                                 <?php if ($d['can_repeat']): ?>
-                                    <a href="/checkout?product_id=<?= (int)$d['product_id'] ?>" class="btn btn-sm btn-outline-brand"
-                                       title="Оформить такой же заказ ещё раз">
-                                        <i class="bi bi-arrow-repeat me-1"></i>Повторить
-                                    </a>
+                                    <form method="POST" action="/cart/repeat" class="d-inline">
+                                        <?= csrfField() ?>
+                                        <input type="hidden" name="deal_id" value="<?= (int)$d['id'] ?>">
+                                        <button type="submit" class="btn btn-sm btn-outline-brand"
+                                                title="Добавить все позиции этой сделки в новую заявку">
+                                            <i class="bi bi-arrow-repeat me-1"></i>Повторить
+                                        </button>
+                                    </form>
                                 <?php endif; ?>
                                 <?php if ($d['can_decide']): ?>
                                     <button type="button" class="btn btn-sm btn-brand"

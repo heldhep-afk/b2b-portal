@@ -130,6 +130,17 @@ unset($_SESSION['flash_success'], $_SESSION['flash_error']);
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0"></ul>
                 <?php endif; ?>
                 <div class="nav-actions d-flex align-items-center gap-2 gap-lg-3 flex-wrap">
+                    <?php if (!$isAdmin && !$isInspector && !$isPending): ?>
+                        <?php $cartCount = class_exists('Cart') ? Cart::count() : 0; ?>
+                        <a href="/cart" class="btn btn-tinted btn-sm position-relative"
+                           aria-label="Заявка<?= $cartCount > 0 ? ': позиций ' . $cartCount : '' ?>" title="Заявка">
+                            <i class="bi bi-cart3"></i>
+                            <?php if ($cartCount > 0): ?>
+                                <span class="badge rounded-pill text-bg-danger position-absolute top-0 start-100 translate-middle"
+                                      style="font-size:.65rem"><?= $cartCount ?></span>
+                            <?php endif; ?>
+                        </a>
+                    <?php endif; ?>
                     <button type="button" class="btn btn-tinted btn-sm theme-toggle" id="themeToggle" aria-label="Тема оформления" title="Тема: авто">
                         <i class="bi bi-circle-half"></i>
                     </button>
@@ -175,6 +186,15 @@ unset($_SESSION['flash_success'], $_SESSION['flash_error']);
                     </li>
                 </ul>
                 <div class="nav-actions d-flex align-items-center flex-wrap gap-2 pb-2 pb-lg-0">
+                    <?php $cartCount = class_exists('Cart') ? Cart::count() : 0; ?>
+                    <a href="/cart" class="btn btn-tinted btn-sm position-relative"
+                       aria-label="Заявка<?= $cartCount > 0 ? ': позиций ' . $cartCount : '' ?>" title="Заявка">
+                        <i class="bi bi-cart3"></i>
+                        <?php if ($cartCount > 0): ?>
+                            <span class="badge rounded-pill text-bg-danger position-absolute top-0 start-100 translate-middle"
+                                  style="font-size:.65rem"><?= $cartCount ?></span>
+                        <?php endif; ?>
+                    </a>
                     <button type="button" class="btn btn-tinted btn-sm theme-toggle" id="themeToggle" aria-label="Тема оформления" title="Тема: авто">
                         <i class="bi bi-circle-half"></i>
                     </button>

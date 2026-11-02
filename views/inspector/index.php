@@ -88,8 +88,14 @@ $list = ['mine' => $mine, 'pool' => $pool, 'done' => $done][$tab];
                                 <div class="small text-muted fw-normal"><?= e(formatDate($t['created_at'])) ?></div>
                             </td>
                             <td>
-                                <div><?= e($t['product_name']) ?></div>
-                                <div class="small text-muted"><?= number_format((int)$t['quantity'], 0, ',', ' ') ?> <?= e($t['unit']) ?><?= $t['category_name'] ? ' · ' . e($t['category_name']) : '' ?></div>
+                                <div><?= e(dealItemsTitle((string)$t['product_name'], (int)($t['items_count'] ?? 1))) ?></div>
+                                <div class="small text-muted">
+                                    <?php if ((int)($t['items_count'] ?? 1) > 1): ?>
+                                        <?= (int)$t['items_count'] ?> поз.<?= $t['category_name'] ? ' · ' . e($t['category_name']) : '' ?>
+                                    <?php else: ?>
+                                        <?= number_format((int)$t['quantity'], 0, ',', ' ') ?> <?= e($t['unit']) ?><?= $t['category_name'] ? ' · ' . e($t['category_name']) : '' ?>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                             <td>
                                 <?= e($t['seller_name']) ?>

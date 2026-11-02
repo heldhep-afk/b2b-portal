@@ -27,6 +27,7 @@ class InspectorController
                 i.escort_name, i.escort_number, i.escort_phone, i.visit_confirmed_at,
                 d.id AS deal_id, d.deal_number, d.quantity, d.total_amount, d.status AS deal_status,
                 d.delivery_address, d.comment AS deal_comment,
+                (SELECT COUNT(*) FROM deal_items di WHERE di.deal_id = d.id) AS items_count,
                 p.name AS product_name, p.description AS product_description, p.unit, p.sku,
                 cat.name AS category_name,
                 b.name AS buyer_name, b.phone AS buyer_phone,

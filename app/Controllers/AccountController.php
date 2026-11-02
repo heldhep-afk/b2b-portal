@@ -78,6 +78,7 @@ class AccountController
         $deals = [];
         $inspectionsAvailable = true;
         $dealsSql = 'SELECT d.id, d.deal_number, d.quantity, d.unit_price, d.total_amount, d.currency,
+                        (SELECT COUNT(*) FROM deal_items di WHERE di.deal_id = d.id) AS items_count,
                         d.status, d.payment_status, d.buyer_approved_at, d.payment_terms, d.created_at, d.closed_at,
                         d.buyer_company_id, d.seller_company_id,
                         b.name AS buyer_name, s.name AS seller_name,

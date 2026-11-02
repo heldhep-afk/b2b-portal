@@ -377,6 +377,7 @@ class StaffController
             $stmt = $this->pdo->prepare(
                 "SELECT i.id, i.status, i.fee, i.fee_status, i.reward, i.reward_paid_at, i.verdict, i.submitted_at, i.created_at,
                         i.revision_count, d.deal_number, p.name AS product_name,
+                        (SELECT COUNT(*) FROM deal_items di WHERE di.deal_id = d.id) AS items_count,
                         b.name AS buyer_name, s.name AS seller_name, u.full_name AS inspector_name
                  FROM inspections i
                  JOIN deals d ON d.id = i.deal_id
@@ -420,6 +421,7 @@ class StaffController
         try {
             $stmt = $this->pdo->prepare(
                 "SELECT i.*, d.id AS deal_id, d.deal_number, d.status AS deal_status, d.quantity, d.total_amount,
+                        (SELECT COUNT(*) FROM deal_items di WHERE di.deal_id = d.id) AS items_count,
                         d.delivery_address, p.name AS product_name, p.unit,
                         b.name AS buyer_name, b.phone AS buyer_phone, s.name AS seller_name, s.phone AS seller_phone,
                         s.address AS seller_address,

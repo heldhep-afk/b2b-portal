@@ -171,8 +171,14 @@ $tabUrl = fn(string $v): string => '/admin' . ($v !== 'all' ? '?view=' . $v : ''
                                 <div class="small text-muted"><i class="bi bi-arrow-right-short"></i><?= e($d['seller_name']) ?></div>
                             </td>
                             <td>
-                                <?= e($d['product_name']) ?>
-                                <div class="small text-muted"><?= number_format((int)$d['quantity'], 0, ',', ' ') ?> <?= e($d['unit']) ?></div>
+                                <?= e(dealItemsTitle((string)$d['product_name'], (int)($d['items_count'] ?? 1))) ?>
+                                <div class="small text-muted">
+                                    <?php if ((int)($d['items_count'] ?? 1) > 1): ?>
+                                        <?= (int)$d['items_count'] ?> поз.
+                                    <?php else: ?>
+                                        <?= number_format((int)$d['quantity'], 0, ',', ' ') ?> <?= e($d['unit']) ?>
+                                    <?php endif; ?>
+                                </div>
                             </td>
                             <td class="text-end text-nowrap fw-semibold"><?= e(formatPrice($d['total_amount'])) ?></td>
                             <td>

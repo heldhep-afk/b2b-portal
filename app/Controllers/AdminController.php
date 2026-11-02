@@ -81,6 +81,7 @@ class AdminController
             $stmt = $this->pdo->prepare(
                 "SELECT d.id, d.deal_number, d.status, d.payment_status, d.buyer_approved_at, d.paid_at, d.paid_out_at,
                         d.quantity, d.total_amount, d.created_at, d.closed_at,
+                        (SELECT COUNT(*) FROM deal_items di WHERE di.deal_id = d.id) AS items_count,
                         b.name AS buyer_name, s.name AS seller_name, p.name AS product_name, p.unit,
                         i.id AS inspection_id, i.status AS inspection_status, i.verdict AS inspection_verdict
                  FROM deals d
@@ -233,6 +234,7 @@ class AdminController
             if ($view === 'day') {
                 $stmt = $this->pdo->prepare(
                     "SELECT d.deal_number, d.quantity, d.total_amount, d.closed_at, d.payment_status,
+                            (SELECT COUNT(*) FROM deal_items di WHERE di.deal_id = d.id) AS items_count,
                             b.name AS buyer_name, s.name AS seller_name, p.name AS product_name, p.unit
                      FROM deals d
                      JOIN companies b ON b.id = d.buyer_company_id

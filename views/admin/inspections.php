@@ -81,7 +81,7 @@ $tabUrl = fn(string $v): string => '/admin/inspections' . ($v !== 'all' ? '?view
                                 <div><?= e($i['buyer_name']) ?></div>
                                 <div class="small text-muted"><i class="bi bi-arrow-right-short"></i><?= e($i['seller_name']) ?></div>
                             </td>
-                            <td><?= e($i['product_name']) ?></td>
+                            <td><?= e(dealItemsTitle((string)$i['product_name'], (int)($i['items_count'] ?? 1))) ?></td>
                             <td>
                                 <?php if ($i['inspector_name']): ?>
                                     <?= e($i['inspector_name']) ?>
