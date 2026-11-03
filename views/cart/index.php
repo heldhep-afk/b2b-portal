@@ -49,7 +49,7 @@ foreach ($groups as $g) {
 
         <?php foreach ($groups as $g): ?>
             <div class="card shadow-sm mb-3">
-                <div class="card-header bg-transparent d-flex justify-content-between align-items-center">
+                <div class="card-header bg-transparent d-flex justify-content-between align-items-center flex-wrap gap-2">
                     <span class="fw-semibold"><i class="bi bi-shop me-1 text-brand"></i><?= e($g['company_name']) ?></span>
                     <span class="small text-muted"><?= count($g['items']) ?> поз.</span>
                 </div>

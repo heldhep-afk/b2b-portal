@@ -39,7 +39,8 @@ $activeCount = count(array_filter($staff, fn($u) => (int)$u['is_active'] === 1))
                         <td class="small"><?= e($a['email']) ?><?= $a['phone'] ? '<br><span class="text-muted">' . e($a['phone']) . '</span>' : '' ?></td>
                         <td class="small" style="max-width: 320px; white-space: pre-wrap"><?= e($a['about'] ?: '—') ?></td>
                         <td class="small text-nowrap"><?= e(formatDateTime($a['created_at'])) ?></td>
-                        <td class="text-end text-nowrap">
+                        <td class="text-end">
+                            <div class="d-flex flex-wrap gap-1 justify-content-end align-items-center">
                             <?php foreach (['approve' => ['Принять', 'btn-success'], 'reject' => ['Отклонить', 'btn-outline-danger']] as $dec => [$lbl, $btn]): ?>
                                 <form method="POST" action="/admin/staff/application" class="d-inline">
                                     <?= csrfField() ?>
@@ -48,6 +49,7 @@ $activeCount = count(array_filter($staff, fn($u) => (int)$u['is_active'] === 1))
                                     <button type="submit" class="btn btn-sm <?= e($btn) ?>"><?= e($lbl) ?></button>
                                 </form>
                             <?php endforeach; ?>
+                            </div>
                         </td>
                     </tr>
                 <?php endforeach; ?>
@@ -103,7 +105,8 @@ $activeCount = count(array_filter($staff, fn($u) => (int)$u['is_active'] === 1))
                                     <span class="badge text-bg-secondary">Отключён</span>
                                 <?php endif; ?>
                             </td>
-                            <td class="text-end text-nowrap">
+                            <td class="text-end">
+                                <div class="d-flex flex-wrap gap-1 justify-content-end align-items-center">
                                 <button type="button" class="btn btn-sm btn-outline-brand"
                                         data-bs-toggle="modal" data-bs-target="#pwdModal"
                                         data-user-id="<?= (int)$u['id'] ?>" data-user-name="<?= e($u['full_name']) ?>">
@@ -119,6 +122,7 @@ $activeCount = count(array_filter($staff, fn($u) => (int)$u['is_active'] === 1))
                                         <button type="submit" class="btn btn-sm btn-outline-success"><i class="bi bi-person-check me-1"></i>Вернуть</button>
                                     <?php endif; ?>
                                 </form>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

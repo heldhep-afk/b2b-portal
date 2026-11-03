@@ -116,7 +116,8 @@ $list = ['mine' => $mine, 'pool' => $pool, 'done' => $done][$tab];
                                     <div class="small text-muted"><?= $t['reward_paid_at'] ? 'выплачено ' . e(formatDate($t['reward_paid_at'])) : 'ждёт выплаты' ?></div>
                                 <?php endif; ?>
                             </td>
-                            <td class="text-end text-nowrap">
+                            <td class="text-end">
+                                <div class="d-flex flex-wrap gap-1 justify-content-end align-items-center">
                                 <?php if ($tab === 'pool'): ?>
                                     <a href="/inspector/task?id=<?= (int)$t['id'] ?>" class="btn btn-sm btn-outline-brand">Подробнее</a>
                                     <?php if ($t['fee_status'] === 'paid'): ?>
@@ -134,6 +135,7 @@ $list = ['mine' => $mine, 'pool' => $pool, 'done' => $done][$tab];
                                         <?= $t['status'] === 'assigned' ? ($needsMe ? 'Продолжить' : 'Открыть') : 'Открыть' ?>
                                     </a>
                                 <?php endif; ?>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

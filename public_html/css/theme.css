@@ -718,7 +718,8 @@ tfoot .table-light td { border-top: 1px solid var(--ap-sep-strong); }
     display: flex; justify-content: space-between; align-items: center; gap: 1rem;
     padding: .8rem 1rem; margin-bottom: .5rem; border-radius: 14px; background: var(--ap-bg);
 }
-.form-switch .form-check-input { width: 2.6em; height: 1.45em; cursor: pointer; }
+.form-switch { padding-left: 2.75em; }
+.form-switch .form-check-input { width: 2.6em; height: 1.45em; margin-left: -2.75em; cursor: pointer; }
 .perm-icons i { font-size: 1.05rem; margin-right: .2rem; }
 
 /* ===== Выпадающие меню: открываются только по клику, по одному ===== */
@@ -761,6 +762,7 @@ tfoot .table-light td { border-top: 1px solid var(--ap-sep-strong); }
 .perm-matrix .perm-col { min-width: 11rem; max-width: 11rem; text-align: center; font-weight: 400; }
 .perm-matrix .perm-col .member-avatar { display: grid; }
 .perm-matrix .form-switch .form-check-input { width: 3rem; height: 1.7rem; margin: 0; }
+.perm-matrix .form-switch { padding-left: 0; }
 .perm-matrix tbody tr:hover td, .perm-matrix tbody tr:hover th { background: rgba(var(--brand-rgb), .035); }
 .perm-all { display: block; margin-top: .35rem; padding: 0; border: 0; background: none; color: var(--brand); font-size: .8125rem; }
 .perm-all:hover { text-decoration: underline; }

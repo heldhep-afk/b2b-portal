@@ -77,7 +77,7 @@ $firstName = $nameWords[1] ?? $nameWords[0];
     <div class="col-lg-6">
         <div class="card shadow-sm h-100">
             <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-start gap-2 mb-3">
+                <div class="d-flex justify-content-between align-items-start gap-2 mb-3 flex-wrap">
                     <div>
                         <div class="text-muted small">Компания</div>
                         <h4 class="mb-1 text-break"><i class="bi bi-building me-1 text-brand"></i><?= e($user['company_name']) ?></h4>
