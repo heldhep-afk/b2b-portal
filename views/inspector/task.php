@@ -186,7 +186,7 @@ if ($task['mine'] || $task['status'] === 'requested') {
             <div class="card shadow-sm mb-4">
                 <div class="card-body p-4">
                     <h5 class="mb-3">Отправленный отчёт</h5>
-                    <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
                         <span class="badge text-bg-<?= e($vm['badge']) ?> fs-6"><i class="bi <?= e($vm['icon']) ?> me-1"></i><?= e($vm['label']) ?></span>
                         <?php if ($task['checked_on']): ?><span class="text-muted small">проверка от <?= e(formatDate($task['checked_on'])) ?></span><?php endif; ?>
                     </div>
@@ -195,7 +195,7 @@ if ($task['mine'] || $task['status'] === 'requested') {
                     <?php if ($links): ?>
                         <ul class="mb-0">
                             <?php foreach ($links as $url): ?>
-                                <li><a href="<?= e($url) ?>" target="_blank" rel="noopener noreferrer nofollow"><?= e($url) ?></a></li>
+                                <li class="text-break"><a href="<?= e($url) ?>" target="_blank" rel="noopener noreferrer nofollow"><?= e($url) ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>

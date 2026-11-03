@@ -70,7 +70,7 @@ require BASE_PATH . '/views/partials/inspection_steps.php';
                 <?php if (!$hasReport || $insp['report_summary'] === null): ?>
                     <div class="text-muted">Отчёта пока нет<?= $insp['inspector_name'] ? ' — проверяющий ещё работает.' : '.' ?></div>
                 <?php else: ?>
-                    <div class="d-flex align-items-center gap-2 mb-3">
+                    <div class="d-flex align-items-center flex-wrap gap-2 mb-3">
                         <span class="badge text-bg-<?= e($vm['badge']) ?> fs-6"><i class="bi <?= e($vm['icon']) ?> me-1"></i><?= e($vm['label']) ?></span>
                         <?php if ($insp['checked_on']): ?><span class="text-muted small">проверка от <?= e(formatDate($insp['checked_on'])) ?></span><?php endif; ?>
                     </div>
@@ -84,7 +84,7 @@ require BASE_PATH . '/views/partials/inspection_steps.php';
                         <div class="fw-semibold mb-1">Ссылки на материалы</div>
                         <ul class="mb-3">
                             <?php foreach ($links as $url): ?>
-                                <li><a href="<?= e($url) ?>" target="_blank" rel="noopener noreferrer nofollow"><?= e($url) ?></a></li>
+                                <li class="text-break"><a href="<?= e($url) ?>" target="_blank" rel="noopener noreferrer nofollow"><?= e($url) ?></a></li>
                             <?php endforeach; ?>
                         </ul>
                     <?php endif; ?>

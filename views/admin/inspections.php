@@ -63,7 +63,7 @@ $tabUrl = fn(string $v): string => '/admin/inspections' . ($v !== 'all' ? '?view
                         <th>Проверяющий</th>
                         <th class="text-end">Доплата</th>
                         <th>Статус</th>
-                        <th class="text-end"></th>
+                        <th class="text-end"><span class="visually-hidden">Действия</span></th>
                     </tr>
                     </thead>
                     <tbody>

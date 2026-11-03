@@ -147,7 +147,7 @@ $staff = array_values(array_filter($members, fn($m) => $m['company_role'] !== 'o
                                 Директору доступно всё.
                             </div>
                         </div>
-                        <div class="d-flex align-items-center gap-3">
+                        <div class="d-flex align-items-center gap-3 flex-wrap">
                             <span class="small text-warning-emphasis" id="permDirty" hidden><i class="bi bi-circle-fill me-1" style="font-size:.5rem"></i>Есть несохранённые изменения</span>
                             <button type="submit" class="btn btn-brand btn-lg"><i class="bi bi-check2 me-1"></i>Сохранить права</button>
                         </div>
