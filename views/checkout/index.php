@@ -3,6 +3,11 @@ require BASE_PATH . '/views/layout/header.php';
 
 $val = fn(string $k): string => e($old[$k] ?? '');
 $dealsCount = count($groups);
+$dealsWord = ($dealsCount % 10 === 1 && $dealsCount % 100 !== 11)
+    ? 'заявку'
+    : ((($dealsCount % 10 >= 2 && $dealsCount % 10 <= 4) && ($dealsCount % 100 < 10 || $dealsCount % 100 >= 20))
+        ? 'заявки'
+        : 'заявок');
 ?>
 
 <nav aria-label="breadcrumb">
@@ -22,7 +27,7 @@ $dealsCount = count($groups);
 <?php if ($dealsCount > 1): ?>
     <div class="alert alert-light border d-flex gap-2">
         <i class="bi bi-diagram-3 text-brand mt-1"></i>
-        <span>В заявке товары <?= $dealsCount ?> продавцов. Мы оформим <?= $dealsCount ?> отдельные сделки — по одной с каждым продавцом.</span>
+        <span>В заявке товары от нескольких продавцов (<?= $dealsCount ?>). С каждым будет отдельная сделка — статусы и оплата по каждой видны в личном кабинете.</span>
     </div>
 <?php endif; ?>
 
@@ -95,10 +100,10 @@ $dealsCount = count($groups);
                 </div>
 
                 <button type="submit" class="btn btn-brand btn-lg w-100">
-                    <i class="bi bi-check2-circle me-1"></i>Оформить <?= $dealsCount > 1 ? $dealsCount . ' заявки' : 'заявку' ?>
+                    <i class="bi bi-check2-circle me-1"></i>Оформить <?= $dealsCount > 1 ? $dealsCount . ' ' . $dealsWord : 'заявку' ?>
                 </button>
                 <p class="text-muted small mt-3 mb-0">
-                    Сделка получит статус «В работе». Одобрить или отклонить её можно будет в
+                    <?= $dealsCount > 1 ? 'Заявки получат' : 'Сделка получит' ?> статус «В работе». Одобрить или отклонить <?= $dealsCount > 1 ? 'их' : 'её' ?> можно будет в
                     <a href="/account#deals">личном кабинете</a>.
                 </p>
             </div>
@@ -135,10 +140,12 @@ $dealsCount = count($groups);
                                 </li>
                             <?php endforeach; ?>
                         </ul>
-                        <div class="d-flex justify-content-between small">
-                            <span class="text-muted">Итого у продавца</span>
-                            <span class="fw-semibold text-nowrap"><?= e(formatPrice($g['total'])) ?></span>
-                        </div>
+                        <?php if ($dealsCount > 1): ?>
+                            <div class="d-flex justify-content-between small">
+                                <span class="text-muted">Итого у продавца</span>
+                                <span class="fw-semibold text-nowrap"><?= e(formatPrice($g['total'])) ?></span>
+                            </div>
+                        <?php endif; ?>
                     </div>
                 <?php endforeach; ?>
 
@@ -183,6 +190,7 @@ $dealsCount = count($groups);
         }
         var text = fmt.format(fee) + ' ₽';
         feeLabel.textContent = '+ ' + text;
+        feeLabel.classList.toggle('d-none', !chk.checked);
         feeOut.textContent = text;
         summary.classList.toggle('d-none', !chk.checked);
         noteWrap.classList.toggle('d-none', !chk.checked);

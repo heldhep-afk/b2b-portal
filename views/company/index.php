@@ -44,7 +44,7 @@ $row = function (string $label, ?string $value): void {
 </div>
 
 <!-- Товары -->
-<div id="products" class="d-flex justify-content-between align-items-center mb-3">
+<div id="products" class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
     <h4 class="mb-0">Товары компании <span class="badge text-bg-secondary"><?= count($products) ?></span></h4>
     <?php if (canCompany('manage_products')): ?>
         <button class="btn btn-brand" type="button" data-bs-toggle="collapse" data-bs-target="#addProduct">
@@ -92,15 +92,15 @@ $row = function (string $label, ?string $value): void {
                         <?php endforeach; ?>
                     </select>
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label class="form-label">Единица</label>
                     <input type="text" name="unit" class="form-control" maxlength="20" value="шт.">
                 </div>
-                <div class="col-md-3">
+                <div class="col-md-2">
                     <label class="form-label">Мин. заказ</label>
                     <input type="number" name="min_order" class="form-control" min="1" value="1">
                 </div>
-                <div class="col-md-6 d-flex align-items-end">
+                <div class="col-md-4 d-flex align-items-end">
                     <div class="form-check">
                         <input class="form-check-input" type="checkbox" name="in_stock" id="in_stock" checked>
                         <label class="form-check-label" for="in_stock">В наличии</label>
@@ -137,7 +137,7 @@ $row = function (string $label, ?string $value): void {
                     <th class="text-end">Цена</th>
                     <th>Мин. заказ</th>
                     <th>Наличие</th>
-                    <th></th>
+                    <th><span class="visually-hidden">Действия</span></th>
                 </tr>
                 </thead>
                 <tbody>

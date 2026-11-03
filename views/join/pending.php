@@ -24,7 +24,7 @@
                     </p>
                 <?php endif; ?>
 
-                <div class="d-flex justify-content-center gap-2 mb-4">
+                <div class="d-flex justify-content-center flex-wrap gap-2 mb-4">
                     <a href="/pending" class="btn btn-outline-brand"><i class="bi bi-arrow-clockwise me-1"></i>Проверить статус</a>
                     <a href="/logout" class="btn btn-outline-secondary">Выйти</a>
                 </div>

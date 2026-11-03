@@ -152,7 +152,7 @@ $firstName = $nameWords[1] ?? $nameWords[0];
             </div>
         </a>
     </div>
-    <div class="col-6 col-lg">
+    <div class="col-12 col-lg">
         <a href="#deals-done" class="stat-link">
             <div class="card shadow-sm h-100 stat-card stat-secondary">
                 <div class="card-body">
@@ -296,6 +296,20 @@ $firstName = $nameWords[1] ?? $nameWords[0];
                                 <?php if ($d['category_name']): ?>
                                     <div class="small text-muted"><?= e($d['category_name']) ?></div>
                                 <?php endif; ?>
+                                <?php if (count($d['items'] ?? []) > 1): ?>
+                                    <details class="mt-1">
+                                        <summary class="small text-brand">Состав заявки</summary>
+                                        <ul class="small text-muted mb-0 ps-3 mt-1">
+                                            <?php foreach ($d['items'] as $it): ?>
+                                                <li>
+                                                    <?= e($it['name']) ?> —
+                                                    <?= number_format((int)$it['quantity'], 0, ',', ' ') ?> <?= e($it['unit']) ?>
+                                                    × <?= e(formatPrice($it['unit_price'])) ?>
+                                                </li>
+                                            <?php endforeach; ?>
+                                        </ul>
+                                    </details>
+                                <?php endif; ?>
                                 <?php if ($d['insp_meta']): ?>
                                     <div class="small mt-1">
                                         <i class="bi bi-patch-check me-1 text-brand"></i>Проверка:
@@ -336,7 +350,8 @@ $firstName = $nameWords[1] ?? $nameWords[0];
                             <td>
                                 <span class="badge text-bg-<?= e($d['pay_badge']) ?>"><?= e($d['pay_label']) ?></span>
                             </td>
-                            <td class="text-end text-nowrap">
+                            <td class="text-end">
+                                <div class="d-flex flex-wrap gap-1 justify-content-end align-items-center">
                                 <?php if ($d['can_order_insp']): ?>
                                     <button type="button" class="btn btn-sm btn-outline-brand"
                                             data-bs-toggle="modal" data-bs-target="#inspOrderModal"
@@ -435,6 +450,7 @@ $firstName = $nameWords[1] ?? $nameWords[0];
                                 <?php elseif (!$d['can_pay'] && !$d['can_repeat'] && !$d['insp_id'] && !$d['can_order_insp']): ?>
                                     <span class="text-muted">—</span>
                                 <?php endif; ?>
+                                </div>
                             </td>
                         </tr>
                     <?php endforeach; ?>

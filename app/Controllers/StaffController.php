@@ -418,6 +418,7 @@ class StaffController
         $insp = false;
         $events = [];
         $inspectors = [];
+        $items = [];
         try {
             $stmt = $this->pdo->prepare(
                 "SELECT i.*, d.id AS deal_id, d.deal_number, d.status AS deal_status, d.quantity, d.total_amount,
@@ -448,6 +449,18 @@ class StaffController
                 );
                 $stmt->execute([$id]);
                 $events = $stmt->fetchAll();
+
+                // состав сделки: у мультипозиционной закупки товаров несколько
+                try {
+                    $stmt = $this->pdo->prepare(
+                        'SELECT name, unit, quantity, unit_price, total
+                         FROM deal_items WHERE deal_id = ? ORDER BY id'
+                    );
+                    $stmt->execute([(int)$insp['deal_id']]);
+                    $items = $stmt->fetchAll();
+                } catch (PDOException $e) {
+                    // миграция ещё не применена — показываем первую позицию
+                }
 
                 $inspectors = $this->pdo->query(
                     "SELECT id, full_name FROM users WHERE role = 'inspector' AND is_active = 1 ORDER BY full_name"

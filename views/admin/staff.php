@@ -18,7 +18,7 @@ $activeCount = count(array_filter($staff, fn($u) => (int)$u['is_active'] === 1))
             Проверяющие выполняют проверку товаров и услуг по заказам компаний. Действующих: <?= (int)$activeCount ?>
         </div>
     </div>
-    <div class="d-flex gap-2">
+    <div class="d-flex flex-wrap gap-2">
         <a href="/admin/inspections" class="btn btn-outline-brand"><i class="bi bi-patch-check me-1"></i>Проверки</a>
         <a href="#add" class="btn btn-brand"><i class="bi bi-person-plus me-1"></i>Добавить сотрудника</a>
     </div>

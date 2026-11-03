@@ -270,7 +270,11 @@ html { scroll-padding-top: 4.5rem; }
 .bar-empty { background: #e9dde1; height: 3px !important; }
 .bar-label { height: 1.4rem; font-size: .72rem; line-height: 1.4rem; color: #8a7f83; }
 .bar-chart-dense .bar-label { font-size: .62rem; }
-@media (max-width: 575.98px) { .bar-chart-dense .bar-label { font-size: .55rem; } }
+@media (max-width: 575.98px) {
+    .period-title { min-width: 0; flex: 1 1 8rem; }
+    .bar-chart-dense { gap: 1px; }
+    .bar-chart-dense .bar-label { font-size: .5rem; }
+}
 
 .cal-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 4px; }
 .cal-head span { text-align: center; font-size: .75rem; color: #8a7f83; }
@@ -605,6 +609,10 @@ thead.table-light th {
 }
 tfoot .table-light td { border-top: 1px solid var(--ap-sep-strong); }
 .table-sm > :not(caption) > * > * { padding: .55rem .6rem; }
+
+/* Раскрывающийся состав заявки внутри таблицы */
+.table details > summary { cursor: pointer; }
+.table details > summary:hover { text-decoration: underline; }
 
 /* ---------- Бейджи и оповещения: деликатные тонированные ---------- */
 .badge { font-weight: 500; font-size: .75rem; padding: .4em .75em; border-radius: 980px; letter-spacing: 0; }
@@ -1020,6 +1028,7 @@ textarea.form-control { min-height: 3.2rem; }
 @media (max-width: 991.98px) {
     .nav-actions { margin-left: 0; width: 100%; padding-top: .5rem; }
     .nav-actions .btn { flex: 1 1 auto; }
+    .nav-actions .cart-link { flex: 0 0 auto; }
 }
 
 /* ---------- Герой каталога ---------- */

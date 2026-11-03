@@ -244,6 +244,17 @@ if ($task['mine'] || $task['status'] === 'requested') {
                     <?php if ($task['sku']): ?> · арт. <?= e($task['sku']) ?><?php endif; ?>
                     <?php if ($task['category_name']): ?> · <?= e($task['category_name']) ?><?php endif; ?>
                 </div>
+                <?php if ((int)($task['items_count'] ?? 1) > 1 && $items): ?>
+                    <ul class="small mb-3 ps-3">
+                        <?php foreach ($items as $it): ?>
+                            <li>
+                                <?= e($it['name']) ?> —
+                                <?= number_format((int)$it['quantity'], 0, ',', ' ') ?> <?= e($it['unit']) ?>
+                                × <?= e(formatPrice($it['unit_price'])) ?>
+                            </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
                 <?php if ($task['product_description']): ?>
                     <p class="small text-muted"><?= nl2br(e($task['product_description'])) ?></p>
                 <?php endif; ?>

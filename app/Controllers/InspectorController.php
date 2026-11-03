@@ -364,6 +364,20 @@ class InspectorController
         } catch (PDOException $e) {
             error_log('Inspector events failed: ' . $e->getMessage());
         }
+
+        // состав сделки: проверяющему нужно видеть все позиции, а не только первую
+        $items = [];
+        try {
+            $stmt = $this->pdo->prepare(
+                'SELECT name, unit, quantity, unit_price, total
+                 FROM deal_items WHERE deal_id = ? ORDER BY id'
+            );
+            $stmt->execute([(int)$task['deal_id']]);
+            $items = $stmt->fetchAll();
+        } catch (PDOException $e) {
+            error_log('Inspector deal items failed: ' . $e->getMessage());
+        }
+
         $pageTitle = 'Задание ' . $task['deal_number'];
         require BASE_PATH . '/views/inspector/task.php';
     }

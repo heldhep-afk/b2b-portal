@@ -113,8 +113,12 @@ class CartController
             Cart::set($pid, max($min, min($value, Cart::MAX_QTY)));
         }
 
-        $_SESSION['flash_success'] = 'Заявка обновлена.';
-        header('Location: /cart');
+        // «Оформить заявку» на странице заявки: сохраняем количества и сразу идём к оформлению
+        $to = ($_POST['then'] ?? '') === 'checkout' ? '/checkout' : '/cart';
+        if ($to === '/cart') {
+            $_SESSION['flash_success'] = 'Заявка обновлена.';
+        }
+        header('Location: ' . $to);
         exit;
     }
 

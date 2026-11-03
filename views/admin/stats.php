@@ -29,7 +29,7 @@ $deltaClass = $delta === null ? 'text-muted' : ($delta >= 0 ? 'text-success' : '
                         <a href="<?= e($viewUrls[$key]) ?>" class="btn btn-outline-brand<?= $view === $key ? ' active' : '' ?>"><?= e($label) ?></a>
                     <?php endforeach; ?>
                 </div>
-                <div class="d-flex align-items-center gap-2">
+                <div class="d-flex align-items-center justify-content-center flex-wrap gap-2">
                     <a href="<?= e($prevUrl) ?>" class="btn btn-sm btn-outline-secondary" aria-label="Назад"><i class="bi bi-chevron-left"></i></a>
                     <div class="fw-semibold text-center period-title"><?= e($periodTitle) ?></div>
                     <?php if ($nextDisabled): ?>

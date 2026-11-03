@@ -8,7 +8,7 @@ $isPending = $isAuth && ($_SESSION['join_status'] ?? 'approved') !== 'approved';
 $path      = rtrim(parse_url($_SERVER['REQUEST_URI'] ?? '/', PHP_URL_PATH) ?: '/', '/') ?: '/';
 $active    = fn(string $href): string => str_starts_with($path, $href) ? ' active' : '';
 $current   = fn(bool $on): string => $on ? ' aria-current="page"' : '';
-$catalogOn = $path === '/' || str_starts_with($path, '/checkout');
+$catalogOn = $path === '/' || str_starts_with($path, '/checkout') || str_starts_with($path, '/cart');
 
 $flashSuccess = $_SESSION['flash_success'] ?? '';
 $flashError   = $_SESSION['flash_error'] ?? '';
@@ -31,7 +31,7 @@ unset($_SESSION['flash_success'], $_SESSION['flash_error']);
             } catch (e) {}
         })();
     </script>
-    <link href="/css/theme.css?v=14" rel="stylesheet">
+    <link href="/css/theme.css?v=15" rel="stylesheet">
     <!-- build 2026-10-31-a -->
     <style>
         /* критичные исправления дублируют theme.css: действуют даже при закешированных стилях */
@@ -132,7 +132,7 @@ unset($_SESSION['flash_success'], $_SESSION['flash_error']);
                 <div class="nav-actions d-flex align-items-center gap-2 gap-lg-3 flex-wrap">
                     <?php if (!$isAdmin && !$isInspector && !$isPending): ?>
                         <?php $cartCount = class_exists('Cart') ? Cart::count() : 0; ?>
-                        <a href="/cart" class="btn btn-tinted btn-sm position-relative"
+                        <a href="/cart" class="btn btn-tinted btn-sm position-relative cart-link"
                            aria-label="Заявка<?= $cartCount > 0 ? ': позиций ' . $cartCount : '' ?>" title="Заявка">
                             <i class="bi bi-cart3"></i>
                             <?php if ($cartCount > 0): ?>
@@ -187,7 +187,7 @@ unset($_SESSION['flash_success'], $_SESSION['flash_error']);
                 </ul>
                 <div class="nav-actions d-flex align-items-center flex-wrap gap-2 pb-2 pb-lg-0">
                     <?php $cartCount = class_exists('Cart') ? Cart::count() : 0; ?>
-                    <a href="/cart" class="btn btn-tinted btn-sm position-relative"
+                    <a href="/cart" class="btn btn-tinted btn-sm position-relative cart-link"
                        aria-label="Заявка<?= $cartCount > 0 ? ': позиций ' . $cartCount : '' ?>" title="Заявка">
                         <i class="bi bi-cart3"></i>
                         <?php if ($cartCount > 0): ?>

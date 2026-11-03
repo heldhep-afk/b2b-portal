@@ -35,7 +35,7 @@
                             <div class="fw-semibold"><?= e($l['company_name']) ?></div>
                             <div class="small text-muted"><?= e(companyRoleLabel($l['company_role'])) ?> · <?= e($l['email']) ?></div>
                         </div>
-                        <div class="d-flex gap-2">
+                        <div class="d-flex flex-wrap gap-2">
                             <?php if ((int)$l['is_active'] === 1 && $l['join_status'] === 'approved'): ?>
                                 <form method="POST" action="/account/switch" class="m-0">
                                     <?= csrfField() ?>

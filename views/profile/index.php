@@ -42,15 +42,15 @@ $canEdit = canCompany('edit_company');
                     <input type="tel" id="company_phone" name="company_phone"<?= $canEdit ? '' : ' readonly' ?> class="form-control" maxlength="30"
                            value="<?= e($user['company_phone']) ?>"<?= $canEdit ? ' required' : '' ?>>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label" for="position">Должность</label>
                     <input type="text" id="position" name="position" class="form-control" maxlength="100" value="<?= e($user['position']) ?>">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label" for="phone">Личный телефон</label>
                     <input type="tel" id="phone" name="phone" class="form-control" maxlength="30" value="<?= e($user['phone']) ?>">
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-4">
                     <label class="form-label" for="username">Логин</label>
                     <input type="text" id="username" name="username" class="form-control" maxlength="50"
                            pattern="[A-Za-z0-9_.\-]+" title="Латинские буквы, цифры и символы _ . -"

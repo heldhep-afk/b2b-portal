@@ -21,12 +21,12 @@ $staff = array_values(array_filter($members, fn($m) => $m['company_role'] !== 'o
 <ul class="nav nav-pills mb-4" id="teamTabs" role="tablist">
     <li class="nav-item" role="presentation">
         <button class="nav-link active" type="button" role="tab" data-bs-toggle="pill" data-bs-target="#tab-members">
-            <i class="bi bi-people me-1"></i>Сотрудники <span class="badge"><?= count($members) ?></span>
+            <i class="bi bi-people me-1"></i>Сотрудники <span class="badge text-bg-light"><?= count($members) ?></span>
         </button>
     </li>
     <li class="nav-item" role="presentation">
         <button class="nav-link" type="button" role="tab" data-bs-toggle="pill" data-bs-target="#tab-requests">
-            <i class="bi bi-person-plus me-1"></i>Заявки<?php if ($canReview && $requests): ?> <span class="badge"><?= count($requests) ?></span><?php endif; ?>
+            <i class="bi bi-person-plus me-1"></i>Заявки<?php if ($canReview && $requests): ?> <span class="badge text-bg-light"><?= count($requests) ?></span><?php endif; ?>
         </button>
     </li>
     <li class="nav-item" role="presentation">

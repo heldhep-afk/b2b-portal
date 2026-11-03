@@ -138,7 +138,19 @@ require BASE_PATH . '/views/partials/inspection_steps.php';
                     <dd class="col-7">
                         <?= e(dealItemsTitle((string)$insp['product_name'], (int)($insp['items_count'] ?? 1))) ?>
                         <?php if ((int)($insp['items_count'] ?? 1) > 1): ?>
-                            · <?= (int)$insp['items_count'] ?> поз.
+                            <?php if ($items): ?>
+                                <ul class="small text-muted mb-0 ps-3 mt-1">
+                                    <?php foreach ($items as $it): ?>
+                                        <li>
+                                            <?= e($it['name']) ?> —
+                                            <?= number_format((int)$it['quantity'], 0, ',', ' ') ?> <?= e($it['unit']) ?>
+                                            × <?= e(formatPrice($it['unit_price'])) ?>
+                                        </li>
+                                    <?php endforeach; ?>
+                                </ul>
+                            <?php else: ?>
+                                · <?= (int)$insp['items_count'] ?> поз.
+                            <?php endif; ?>
                         <?php else: ?>
                             · <?= number_format((int)$insp['quantity'], 0, ',', ' ') ?> <?= e($insp['unit']) ?>
                         <?php endif; ?>

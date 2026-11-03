@@ -48,13 +48,21 @@ $cls = fn(string $k): string => isset($errors[$k]) ? ' is-invalid' : '';
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="password">Пароль <span class="text-danger">*</span></label>
-                            <input type="password" name="password" id="password" class="form-control<?= $cls('password') ?>" autocomplete="new-password" required>
+                            <div class="pass-wrap">
+                                <input type="password" name="password" id="password" class="form-control<?= $cls('password') ?>" autocomplete="new-password" required>
+                                <button type="button" class="pass-toggle" data-pass-target="password"
+                                        aria-label="Показать пароль"><i class="bi bi-eye"></i></button>
+                            </div>
                             <div class="form-text">Не короче 8 символов.</div>
                             <?= $err('password') ?>
                         </div>
                         <div class="col-md-6">
                             <label class="form-label" for="password_confirm">Повтор пароля <span class="text-danger">*</span></label>
-                            <input type="password" name="password_confirm" id="password_confirm" class="form-control<?= $cls('password_confirm') ?>" autocomplete="new-password" required>
+                            <div class="pass-wrap">
+                                <input type="password" name="password_confirm" id="password_confirm" class="form-control<?= $cls('password_confirm') ?>" autocomplete="new-password" required>
+                                <button type="button" class="pass-toggle" data-pass-target="password_confirm"
+                                        aria-label="Показать пароль"><i class="bi bi-eye"></i></button>
+                            </div>
                             <?= $err('password_confirm') ?>
                         </div>
                     </div>
@@ -67,5 +75,21 @@ $cls = fn(string $k): string => isset($errors[$k]) ? ' is-invalid' : '';
         </div>
     </div>
 </div>
+
+<script>
+(function () {
+    [].forEach.call(document.querySelectorAll('.pass-toggle[data-pass-target]'), function (btn) {
+        btn.addEventListener('click', function () {
+            var input = document.getElementById(btn.getAttribute('data-pass-target'));
+            if (!input) return;
+            var show = input.type === 'password';
+            input.type = show ? 'text' : 'password';
+            btn.setAttribute('aria-label', show ? 'Скрыть пароль' : 'Показать пароль');
+            var icon = btn.querySelector('i');
+            if (icon) icon.className = show ? 'bi bi-eye-slash' : 'bi bi-eye';
+        });
+    });
+})();
+</script>
 
 <?php require BASE_PATH . '/views/layout/footer.php'; ?>

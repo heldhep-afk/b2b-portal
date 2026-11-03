@@ -44,6 +44,8 @@ foreach ($groups as $g) {
 
     <form method="POST" action="/cart/update" id="cartForm">
         <?= csrfField() ?>
+        <!-- кнопка по умолчанию: Enter в поле количества сохраняет заявку, а не удаляет первую позицию -->
+        <button type="submit" class="d-none" tabindex="-1" aria-hidden="true"></button>
 
         <?php foreach ($groups as $g): ?>
             <div class="card shadow-sm mb-3">
@@ -94,6 +96,7 @@ foreach ($groups as $g) {
                                     <button type="submit" name="remove" value="<?= (int)$it['id'] ?>"
                                             class="btn btn-sm btn-outline-secondary"
                                             formnovalidate
+                                            title="Удалить позицию"
                                             aria-label="Удалить «<?= e($it['name']) ?>» из заявки">
                                         <i class="bi bi-trash"></i>
                                     </button>
@@ -103,10 +106,12 @@ foreach ($groups as $g) {
                         </tbody>
                     </table>
                 </div>
-                <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
-                    <span class="text-muted small">Итого у продавца</span>
-                    <span class="fw-bold text-brand"><?= e(formatPrice($g['total'])) ?></span>
-                </div>
+                <?php if (count($groups) > 1): ?>
+                    <div class="card-footer bg-transparent d-flex justify-content-between align-items-center">
+                        <span class="text-muted small">Итого у продавца</span>
+                        <span class="fw-bold text-brand"><?= e(formatPrice($g['total'])) ?></span>
+                    </div>
+                <?php endif; ?>
             </div>
         <?php endforeach; ?>
 
@@ -120,9 +125,10 @@ foreach ($groups as $g) {
 
                 <div class="d-flex flex-wrap gap-2">
                     <?php if ($canOrder): ?>
-                        <a href="/checkout" class="btn btn-brand btn-lg flex-grow-1">
+                        <button type="submit" formaction="/cart/update" name="then" value="checkout"
+                                class="btn btn-brand btn-lg flex-grow-1">
                             <i class="bi bi-check2-circle me-1"></i>Оформить заявку
-                        </a>
+                        </button>
                     <?php elseif (!$isAuth): ?>
                         <a href="/login" class="btn btn-brand btn-lg flex-grow-1">
                             <i class="bi bi-box-arrow-in-right me-1"></i>Войти и оформить

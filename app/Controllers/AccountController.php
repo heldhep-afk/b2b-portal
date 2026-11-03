@@ -115,6 +115,32 @@ class AccountController
                 $stmt->execute([':as_buyer' => $companyId, ':as_seller' => $companyId]);
             }
             $deals = $stmt->fetchAll();
+
+            // Состав сделки для раскрывающегося списка позиций
+            if ($deals !== []) {
+                try {
+                    $dealIds = array_map(static fn(array $row): int => (int)$row['id'], $deals);
+                    $in      = implode(',', array_fill(0, count($dealIds), '?'));
+                    $itemSt  = $this->pdo->prepare(
+                        "SELECT deal_id, name, unit, quantity, unit_price, total
+                         FROM deal_items
+                         WHERE deal_id IN ($in)
+                         ORDER BY id"
+                    );
+                    $itemSt->execute($dealIds);
+
+                    $byDeal = [];
+                    foreach ($itemSt->fetchAll() as $itemRow) {
+                        $byDeal[(int)$itemRow['deal_id']][] = $itemRow;
+                    }
+                    foreach ($deals as &$dealRow) {
+                        $dealRow['items'] = $byDeal[(int)$dealRow['id']] ?? [];
+                    }
+                    unset($dealRow);
+                } catch (PDOException $e) {
+                    // миграция ещё не применена — показываем сделки без состава
+                }
+            }
         } catch (PDOException $e) {
             $dbNotice = $dbNotice ?: 'Таблица сделок недоступна — проверьте, что она создана.';
         }
