@@ -64,8 +64,8 @@ $staff = array_values(array_filter($members, fn($m) => $m['company_role'] !== 'o
                                     <div class="d-flex align-items-center gap-2">
                                         <span class="member-avatar"><?= e(initials($m['full_name'] ?: $m['username'])) ?></span>
                                         <div>
-                                            <div class="fw-semibold"><?= e($m['full_name'] ?: $m['username']) ?><?= $isMe ? ' <span class="small text-muted">(вы)</span>' : '' ?></div>
-                                            <div class="small text-muted"><?= e($m['username']) ?></div>
+                                            <div class="fw-semibold text-break"><?= e($m['full_name'] ?: $m['username']) ?><?= $isMe ? ' <span class="small text-muted">(вы)</span>' : '' ?></div>
+                                            <div class="small text-muted text-break"><?= e($m['username']) ?></div>
                                         </div>
                                     </div>
                                 </td>
@@ -304,7 +304,7 @@ $staff = array_values(array_filter($members, fn($m) => $m['company_role'] !== 'o
                                             <div class="d-flex align-items-center gap-2">
                                                 <span class="member-avatar"><?= e(initials($r['full_name'] ?: $r['username'])) ?></span>
                                                 <div>
-                                                    <div class="fw-semibold"><?= e($r['full_name']) ?></div>
+                                                    <div class="fw-semibold text-break"><?= e($r['full_name']) ?></div>
                                                     <div class="small text-muted"><?= e($r['position'] ?: '—') ?></div>
                                                 </div>
                                             </div>

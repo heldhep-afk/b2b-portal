@@ -86,7 +86,7 @@ $dealsWord = ($dealsCount % 10 === 1 && $dealsCount % 100 !== 11)
 
                 <h5 class="mb-3">Покупатель</h5>
                 <div class="rounded bg-light border p-3 mb-4 small">
-                    <div class="fw-semibold"><i class="bi bi-building me-1 text-brand"></i><?= e($buyer['company_name'] ?? '') ?></div>
+                    <div class="fw-semibold text-break"><i class="bi bi-building me-1 text-brand"></i><?= e($buyer['company_name'] ?? '') ?></div>
                     <div class="text-muted">
                         <?= e($buyer['full_name'] ?: ($buyer['username'] ?? '')) ?>
                         <?php if (!empty($buyer['position'])): ?>· <?= e($buyer['position']) ?><?php endif; ?>
@@ -123,7 +123,7 @@ $dealsWord = ($dealsCount % 10 === 1 && $dealsCount % 100 !== 11)
 
                 <?php foreach ($groups as $g): ?>
                     <div class="mb-3">
-                        <div class="small fw-semibold text-brand mb-2">
+                        <div class="small fw-semibold text-brand mb-2 text-break">
                             <i class="bi bi-shop me-1"></i><?= e($g['company_name']) ?>
                         </div>
                         <ul class="list-unstyled small mb-1">

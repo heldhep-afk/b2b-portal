@@ -208,7 +208,7 @@ $hasFilters = (bool)$baseQuery;
                             <div class="card-body d-flex flex-column pt-2">
                                 <h5 class="product-title mb-1"><?= e($p['name']) ?></h5>
                                 <div class="product-meta small text-muted mb-2">
-                                    <span><i class="bi bi-building me-1"></i><?= e($p['company_name']) ?></span>
+                                    <span class="text-break"><i class="bi bi-building me-1"></i><?= e($p['company_name']) ?></span>
                                     <?php if ($p['category_name']): ?><span class="product-meta-sep">·</span><span><?= e($p['category_name']) ?></span><?php endif; ?>
                                     <?php if ($p['sku']): ?><span class="product-meta-sep">·</span><span>арт. <?= e($p['sku']) ?></span><?php endif; ?>
                                 </div>

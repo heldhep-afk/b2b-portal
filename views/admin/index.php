@@ -86,7 +86,7 @@ $tabUrl = fn(string $v): string => '/admin' . ($v !== 'all' ? '?view=' . $v : ''
     </div>
     <div class="col-12 col-lg-4">
         <div class="card shadow-sm h-100 stat-card stat-info"><div class="card-body">
-            <div class="d-flex justify-content-between">
+            <div class="d-flex justify-content-between flex-wrap gap-2">
                 <div>
                     <div class="text-muted small">Средства у платформы</div>
                     <div class="fs-5 fw-bold text-nowrap"><?= e(formatPrice($stats['held'])) ?></div>

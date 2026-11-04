@@ -35,8 +35,8 @@ $activeCount = count(array_filter($staff, fn($u) => (int)$u['is_active'] === 1))
                 <tbody>
                 <?php foreach ($applications as $a): ?>
                     <tr>
-                        <td class="fw-semibold"><?= e($a['full_name']) ?></td>
-                        <td class="small"><?= e($a['email']) ?><?= $a['phone'] ? '<br><span class="text-muted">' . e($a['phone']) . '</span>' : '' ?></td>
+                        <td class="fw-semibold text-break"><?= e($a['full_name']) ?></td>
+                        <td class="small text-break"><?= e($a['email']) ?><?= $a['phone'] ? '<br><span class="text-muted">' . e($a['phone']) . '</span>' : '' ?></td>
                         <td class="small" style="max-width: 320px; white-space: pre-wrap"><?= e($a['about'] ?: '—') ?></td>
                         <td class="small text-nowrap"><?= e(formatDateTime($a['created_at'])) ?></td>
                         <td class="text-end">
@@ -87,11 +87,11 @@ $activeCount = count(array_filter($staff, fn($u) => (int)$u['is_active'] === 1))
                     <?php foreach ($staff as $u): ?>
                         <tr class="<?= (int)$u['is_active'] === 1 ? '' : 'text-muted' ?>">
                             <td>
-                                <div class="fw-semibold"><?= e($u['full_name']) ?></div>
+                                <div class="fw-semibold text-break"><?= e($u['full_name']) ?></div>
                                 <div class="small text-muted"><?= e($u['position'] ?: 'Проверяющий') ?> · <?= e($u['username']) ?></div>
                             </td>
                             <td class="small">
-                                <div><?= e($u['email']) ?></div>
+                                <div class="text-break"><?= e($u['email']) ?></div>
                                 <?php if ($u['phone']): ?><div class="text-muted"><?= e($u['phone']) ?></div><?php endif; ?>
                             </td>
                             <td class="text-end"><?= (int)$u['in_work'] ?></td>

@@ -3,7 +3,7 @@ require BASE_PATH . '/views/layout/header.php';
 $name = $company['company_name'] ?: $company['username'];
 $row = function (string $label, ?string $value): void {
     echo '<dt class="col-sm-4 text-muted fw-normal">' . e($label) . '</dt>';
-    echo '<dd class="col-sm-8">' . (($value !== null && $value !== '') ? e($value) : '<span class="text-muted">—</span>') . '</dd>';
+    echo '<dd class="col-sm-8 text-break">' . (($value !== null && $value !== '') ? e($value) : '<span class="text-muted">—</span>') . '</dd>';
 };
 ?>
 
@@ -12,7 +12,7 @@ $row = function (string $label, ?string $value): void {
     <div class="card-body p-4">
         <div class="d-flex justify-content-between align-items-start flex-wrap gap-2 mb-3">
             <div>
-                <h2 class="mb-1"><?= e($name) ?></h2>
+                <h2 class="mb-1 text-break"><?= e($name) ?></h2>
                 <?php if ($company['inn']): ?>
                     <span class="badge text-bg-brand">ИНН <?= e($company['inn']) ?></span>
                 <?php endif; ?>

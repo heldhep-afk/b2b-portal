@@ -31,7 +31,7 @@ unset($_SESSION['flash_success'], $_SESSION['flash_error']);
             } catch (e) {}
         })();
     </script>
-    <link href="/css/theme.css?v=15" rel="stylesheet">
+    <link href="/css/theme.css?v=16" rel="stylesheet">
     <!-- build 2026-10-31-a -->
     <style>
         /* критичные исправления дублируют theme.css: действуют даже при закешированных стилях */
@@ -151,8 +151,8 @@ unset($_SESSION['flash_success'], $_SESSION['flash_error']);
                     <?php else: ?>
                         <?php $linkedAccounts = $GLOBALS['linkedAccounts'] ?? []; ?>
                         <div class="dropdown">
-                            <button type="button" class="btn btn-tinted btn-sm dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                                <i class="bi bi-building me-1"></i><?= e($_SESSION['company_name'] ?? 'Компания') ?>
+                            <button type="button" class="btn btn-tinted btn-sm dropdown-toggle company-switch-btn" data-bs-toggle="dropdown" aria-expanded="false" title="<?= e($_SESSION['company_name'] ?? 'Компания') ?>">
+                                <i class="bi bi-building me-1"></i><span class="company-switch-name align-middle"><?= e($_SESSION['company_name'] ?? 'Компания') ?></span>
                             </button>
                             <ul class="dropdown-menu dropdown-menu-end">
                                 <li><span class="dropdown-item-text small text-muted">Вы работаете от имени</span></li>

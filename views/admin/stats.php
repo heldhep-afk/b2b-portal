@@ -127,7 +127,7 @@ $deltaClass = $delta === null ? 'text-muted' : ($delta >= 0 ? 'text-success' : '
                         </div>
                     <?php endif; ?>
                 <?php else: ?>
-                    <div class="d-flex justify-content-between align-items-center mb-3">
+                    <div class="d-flex justify-content-between align-items-center flex-wrap gap-2 mb-3">
                         <h5 class="mb-0"><?= $view === 'year' ? 'Продажи по месяцам' : 'Продажи по дням' ?></h5>
                         <span class="small text-muted">Нажмите на столбец, чтобы перейти <?= $view === 'year' ? 'к месяцу' : 'к дню' ?></span>
                     </div>
@@ -154,10 +154,10 @@ $deltaClass = $delta === null ? 'text-muted' : ($delta >= 0 ? 'text-success' : '
     <div class="col-lg-4">
         <div class="card shadow-sm sticky-lg" id="calendar">
             <div class="card-body p-4">
-                <div class="d-flex justify-content-between align-items-center mb-3">
-                    <a href="<?= e($calPrevUrl) ?>" class="btn btn-sm btn-outline-secondary" aria-label="Предыдущий месяц"><i class="bi bi-chevron-left"></i></a>
-                    <div class="fw-semibold"><?= e($calTitle) ?></div>
-                    <a href="<?= e($calNextUrl) ?>" class="btn btn-sm btn-outline-secondary" aria-label="Следующий месяц"><i class="bi bi-chevron-right"></i></a>
+                <div class="d-flex justify-content-between align-items-center gap-2 mb-3">
+                    <a href="<?= e($calPrevUrl) ?>" class="btn btn-sm btn-outline-secondary flex-shrink-0" aria-label="Предыдущий месяц"><i class="bi bi-chevron-left"></i></a>
+                    <div class="fw-semibold text-center text-break"><?= e($calTitle) ?></div>
+                    <a href="<?= e($calNextUrl) ?>" class="btn btn-sm btn-outline-secondary flex-shrink-0" aria-label="Следующий месяц"><i class="bi bi-chevron-right"></i></a>
                 </div>
 
                 <div class="cal-grid cal-head mb-1">

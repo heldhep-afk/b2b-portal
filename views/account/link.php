@@ -20,7 +20,7 @@
 
                 <div class="perm-item mb-2">
                     <div>
-                        <div class="fw-semibold"><i class="bi bi-check2 text-brand me-1"></i><?= e($_SESSION['company_name'] ?? '') ?></div>
+                        <div class="fw-semibold text-break"><i class="bi bi-check2 text-brand me-1"></i><?= e($_SESSION['company_name'] ?? '') ?></div>
                         <div class="small text-muted">Текущая компания · <?= e(companyRoleLabel($_SESSION['company_role'] ?? 'employee')) ?></div>
                     </div>
                 </div>
@@ -32,8 +32,8 @@
                 <?php foreach ($linked as $l): ?>
                     <div class="perm-item mb-2">
                         <div>
-                            <div class="fw-semibold"><?= e($l['company_name']) ?></div>
-                            <div class="small text-muted"><?= e(companyRoleLabel($l['company_role'])) ?> · <?= e($l['email']) ?></div>
+                            <div class="fw-semibold text-break"><?= e($l['company_name']) ?></div>
+                            <div class="small text-muted text-break"><?= e(companyRoleLabel($l['company_role'])) ?> · <?= e($l['email']) ?></div>
                         </div>
                         <div class="d-flex flex-wrap gap-2">
                             <?php if ((int)$l['is_active'] === 1 && $l['join_status'] === 'approved'): ?>

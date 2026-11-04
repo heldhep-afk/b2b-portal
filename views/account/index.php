@@ -21,7 +21,7 @@ $firstName = $nameWords[1] ?? $nameWords[0];
 ?>
 <div class="page-head mb-3">
     <h2 class="mb-1">Здравствуйте, <?= e($firstName) ?></h2>
-    <div class="text-muted"><?= e($user['company_name']) ?> · <?= e(companyRoleLabel($user['company_role'])) ?></div>
+    <div class="text-muted text-break"><?= e($user['company_name']) ?> · <?= e(companyRoleLabel($user['company_role'])) ?></div>
 </div>
 
 <!-- Навигация по разделам -->
@@ -92,7 +92,7 @@ $firstName = $nameWords[1] ?? $nameWords[0];
                 </div>
                 <dl class="row mb-0 small">
                     <dt class="col-sm-4 text-muted fw-normal">Адрес</dt>
-                    <dd class="col-sm-8"><?= e($user['company_address'] ?: '—') ?></dd>
+                    <dd class="col-sm-8 text-break"><?= e($user['company_address'] ?: '—') ?></dd>
                     <dt class="col-sm-4 text-muted fw-normal">Телефон</dt>
                     <dd class="col-sm-8"><?= e($user['company_phone'] ?: '—') ?></dd>
                     <dt class="col-sm-4 text-muted fw-normal">Категорий</dt>
